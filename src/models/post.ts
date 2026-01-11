@@ -26,7 +26,11 @@ export class Post extends Model<IPost, IPostCreate> implements IPost {
 
   static initModel(sequelize: Sequelize): typeof Post {
     Post.init({
-      id: DataTypes.INTEGER,
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
       title: DataTypes.STRING,
       description: DataTypes.STRING,
       deletedAt: DataTypes.DATE,
