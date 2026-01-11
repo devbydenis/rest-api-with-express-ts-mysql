@@ -14,7 +14,8 @@ app.get('/', (req: Request, res: Response) => {
 app.get("/posts", PostController.getPosts)
 app.post("/posts", PostController.createPost)
 app.get("/posts/:id", PostController.getPost)
-app.put("/post/:id", PostController.uploadPost)
+app.put("/posts/:id", PostController.uploadPost)
+app.delete("/posts/:id", PostController.deletePost)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

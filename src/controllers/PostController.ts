@@ -60,4 +60,19 @@ export default class PostController {
 
     return res.status(200).json({message: "success update data"})
   }
+
+  static async deletePost(req: Request, res: Response) {
+    const id = req.params.id
+    
+    const post = await Post.findByPk(id)
+    if (!post) return res.status(404).json({message: "post not found"})
+    
+    await Post.destroy({
+      where: {
+        id: post.id
+      }
+    })
+
+    return res.status(200).json({message: "successfully delete post"})
+  }
 }
