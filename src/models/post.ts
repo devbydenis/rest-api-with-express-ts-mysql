@@ -9,7 +9,7 @@ interface IPost {
   updatedAt: Date;
 }
 
-interface IPostCreate extends Optional<IPost, "id"> {} // ngasih tau kalo id dari IPost ini optional
+interface IPostCreate extends Optional<IPost, "id" | "createdAt" | "updatedAt" | "deletedAt"> {} // ngasih tau kalo id, createdAt, UpdatedAt, deletedAt dari IPost ini optional
 
 export class Post extends Model<IPost, IPostCreate> implements IPost {
   public id!: number;

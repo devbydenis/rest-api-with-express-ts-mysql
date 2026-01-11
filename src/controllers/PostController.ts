@@ -19,4 +19,20 @@ export default class PostController {
       data: post
     });
   }
+
+  static async createPost(req: Request, res: Response) {
+    const body = req.body
+    if (!body.title || !body.description) {
+      return res.status(400).json({success: false, message: "title or description is required"})
+    }
+
+    await Post.create({
+      title: body.title,
+      description: body.description
+    })
+
+    return res.status(201).json({
+      message: "successfully created"
+    })
+  }
 }
