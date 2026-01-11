@@ -9,6 +9,7 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 app.get("/posts", PostController.getPosts)
+app.get("/posts/:id", PostController.getPost)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
