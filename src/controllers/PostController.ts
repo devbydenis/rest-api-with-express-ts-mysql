@@ -23,7 +23,7 @@ export default class PostController {
   static async createPost(req: Request, res: Response) {
     const body = req.body
     if (!body.title || !body.description) {
-      return res.status(400).json({success: false, message: "title or description is required"})
+      return res.status(400).json({success: false, message: "title or description cannot be blank"})
     }
 
     await Post.create({
@@ -34,5 +34,30 @@ export default class PostController {
     return res.status(201).json({
       message: "successfully created"
     })
+  }
+
+  static async uploadPost(req: Request, res: Response) {
+    const id = req.params.id
+    const body = req.body
+
+    if (!body.title || !body.description) {
+      return res.status(400).json({success: false, message: "title or description cannot be blank"})
+    }
+
+    const post = await Post.findByPk(id)
+    if (!post) {
+      return res.status(404).json({message: `post with ${id} not found`})
+    }
+
+    await Post.update({
+      title: body.title,
+      description: body.description
+    }, {
+      where: {
+        id: post.id
+      }
+    })
+
+    return res.status(200).json({message: "success update data"})
   }
 }
