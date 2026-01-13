@@ -40,6 +40,8 @@ export class Post extends Model<IPost, IPostCreate> implements IPost {
       sequelize,
       tableName: "Posts",
       modelName: "Post",
+      paranoid: true,
+      deletedAt: "deletedAt"
     })
 
     return Post
