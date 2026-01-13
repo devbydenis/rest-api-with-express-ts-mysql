@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import { Post } from "./post";
+import { Comment } from "./comment";
 
 const env = process.env.NODE_ENV || "development"
 const config = require("../../config/config.json")[env];
@@ -12,8 +13,10 @@ export const sequelize = new Sequelize(
 )
 
 Post.initModel(sequelize)
+Comment.initModel(sequelize)
 
 export {
   Sequelize,
-  Post
+  Post,
+  Comment
 }
