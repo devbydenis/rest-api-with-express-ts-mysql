@@ -70,7 +70,8 @@ export default class PostController {
     await Post.destroy({
       where: {
         id: post.id
-      }
+      },
+      force: true
     })
 
     return res.status(200).json({message: "successfully delete post"})
